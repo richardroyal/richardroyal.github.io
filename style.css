@@ -1,0 +1,10 @@
+body {
+  color: #ebebeb; }
+  body #wrapper {
+    width: 784px;
+    border: 1px solid #f2f2f2;
+    background: #f2f2f2;
+    margin: 40px auto 20px auto;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; }
