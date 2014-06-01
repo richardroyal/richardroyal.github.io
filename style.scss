@@ -72,4 +72,18 @@ body{
       }
     }
   }
+
+}
+
+
+@media only screen and (max-width : 768px) {
+
+  body{
+    #wrapper{
+      width: 90%;
+      border: 1px solid #f2f2f2;
+      margin: 40px auto 20px auto;
+      padding: 15px;
+    }
+  }
 }

@@ -52,3 +52,10 @@ body {
           color: #6fa7cf; }
         body #wrapper ul a:visited {
           color: #6fa7cf; }
+
+@media only screen and (max-width: 768px) {
+  body #wrapper {
+    width: 90%;
+    border: 1px solid #f2f2f2;
+    margin: 40px auto 20px auto;
+    padding: 15px; } }
