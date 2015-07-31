@@ -2,13 +2,14 @@
 var gulp = require('gulp'); 
 
 // Include plugins
-var jshint = require('gulp-jshint');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var notify = require('gulp-notify');
-var minify = require('gulp-minify-css');
-var haml   = require('gulp-haml');
+var jshint  = require('gulp-jshint');
+var concat  = require('gulp-concat');
+var uglify  = require('gulp-uglify');
+var rename  = require('gulp-rename');
+var notify  = require('gulp-notify');
+var minify  = require('gulp-minify-css');
+var haml    = require('gulp-haml');
+var connect = require('gulp-connect');
 
 // Build HTML from HAML
 gulp.task('haml', function () {
@@ -54,5 +55,10 @@ gulp.task('watch', function() {
     gulp.watch('assets/css/*.css', ['css']);
 });
 
+// Start local webserver
+gulp.task('webserver', function() {
+    connect.server();
+});
+
 // Default Task
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'webserver']);
