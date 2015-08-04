@@ -10,6 +10,7 @@ var notify  = require('gulp-notify');
 var minify  = require('gulp-minify-css');
 var haml    = require('gulp-haml');
 var connect = require('gulp-connect');
+var less    = require('gulp-less');
 
 // Build HTML from HAML
 gulp.task('haml', function () {
@@ -30,21 +31,22 @@ gulp.task('lint', function() {
 gulp.task('scripts', function() {
     return gulp.src('assets/js/*.js')
         .pipe(concat('rroyal-io.js'))
-        .pipe(gulp.dest('assets/build/js/'))
+        .pipe(gulp.dest('dist/build/js/'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('assets/build/js/'))
+        .pipe(gulp.dest('dist/build/js/'))
         .pipe(notify('Finished JS minification'));
 });
 
-// Minify static CSS
-gulp.task('css', function(){
-    return gulp.src('assets/css/*.css')
-        .pipe(concat('wpss-pkg.css'))
-        .pipe(gulp.dest('assets/build/css/'))
-        .pipe(rename({suffix: '.min'}))
+
+// Less -> CSS -> Minified CSS
+gulp.task('css', function () {
+    return gulp.src('assets/less/*.less')
+        .pipe(concat('rroyal-io.less'))
+        .pipe(less())
         .pipe(minify())
-        .pipe(gulp.dest('assets/build/css/'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('assets/dist/css/'))
         .pipe(notify('Finished CSS minification'));
 });
 
@@ -52,7 +54,7 @@ gulp.task('css', function(){
 gulp.task('watch', function() {
     gulp.watch('index.haml', ['haml']);
     gulp.watch('assets/js/*.js', ['lint', 'scripts']);
-    gulp.watch('assets/css/*.css', ['css']);
+    gulp.watch('assets/less/*.less', ['css']);
 });
 
 // Start local webserver
